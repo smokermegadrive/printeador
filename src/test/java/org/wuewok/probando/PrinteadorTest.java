@@ -2,15 +2,27 @@ package org.wuewok.probando;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class PrinteadorTest {
 
-	@Test
-	public void saludarRaul() {
-		Printeador printeador = new Printeador();
-		String saludo = printeador.saludar("Raul");
-		assertEquals(saludo, "Hola Raul");
-	}
+    Printeador printeador;
 
+    @Before
+    public void before() {
+        printeador = new Printeador();
+    }
+
+    @Test
+    public void saludarRaul() {
+        String saludo = this.printeador.saludar("Raul");
+        assertEquals(saludo, "Hola Raul");
+    }
+
+    @Test
+    public void saludarAnonimo() {
+        String saludo = this.printeador.saludar();
+        assertEquals(saludo, "Hola usuario");
+    }
 }
