@@ -6,4 +6,8 @@ public class Printeador {
 		return "Hola " + nombre;
 	}
 
+	public String saludar() {
+		return "Hola usuario";
+	}
+
 }
