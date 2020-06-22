@@ -24,7 +24,23 @@ public class FormValidator {
 
         if (data.tipoPersona == TipoPersona.FISICA) {
             return this.validarFisica(data);
-        } else {
+        }
+        else if (data.tipoPersona == TipoPersona.FisicaSinNombre) {
+            return this.validarFisicaSinNombre(data);
+        }
+        else if (data.tipoPersona == TipoPersona.JuridicaSinRazon) {
+            return this.validarJuridicaSinRazonSocial(data);
+        }
+        else if (data.tipoPersona == TipoPersona.JuridicaSinRazon) {
+            return this.validarJuridicaSinRazonSocial(data);
+        }
+        else if (data.tipoPersona == TipoPersona.JuridicaDireccion) {
+            return this.validarJuridicaDireccion(data);
+        }
+        else if (data.tipoPersona == TipoPersona.FisicaDNIVacio) {
+            return this.validarFisicaDNIVacio(data);
+        }
+        else {
             return this.validarJuridica(data);
         }
     }
@@ -34,6 +50,34 @@ public class FormValidator {
             return false;
         }
 
+        if (StringUtils.isEmpty(data.apellido)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(data.dni)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarFisicaDNIVacio(FormData data) {
+        if (StringUtils.isEmpty(data.nombre)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(data.apellido)) {
+            return false;
+        }
+
+        if (StringUtils.isNotEmpty(data.dni)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarFisicaSinNombre(FormData data) {
         if (StringUtils.isEmpty(data.apellido)) {
             return false;
         }
@@ -57,4 +101,27 @@ public class FormValidator {
         return true;
     }
 
+    private boolean validarJuridicaSinRazonSocial(FormData data) {
+        if (StringUtils.isEmpty(data.cuil)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validarJuridicaDireccion(FormData data) {
+        if (StringUtils.isEmpty(data.razonSocial)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(data.cuil)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(data.direccion)) {
+            return false;
+        }
+
+        return true;
+    }
 }
