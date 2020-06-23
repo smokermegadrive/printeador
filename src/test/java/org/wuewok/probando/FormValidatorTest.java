@@ -35,9 +35,8 @@ public class FormValidatorTest {
         data.direccion = "al fondo a la derecha";
         data.cuil = "123";
 
-        assertFalse(data.direccion.isEmpty());
         boolean isValid = this.validator.validar(data);
-        assertTrue(isValid);
+        assertFalse(isValid);
     }
 
     @Test

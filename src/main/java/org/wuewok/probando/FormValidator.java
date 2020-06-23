@@ -55,6 +55,13 @@ public class FormValidator {
             return false;
         }
 
+        if (StringUtils.isEmpty(data.direccion)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(data.telefono)) {
+            return false;
+        }
         return true;
     }
 }
