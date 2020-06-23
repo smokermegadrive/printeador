@@ -1,5 +1,6 @@
 package org.wuewok.probando;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -26,13 +27,15 @@ public class FormValidatorTest {
         assertTrue(isValid);
     }
 
+    @Test
     public void personaJuridicaDireccion() {
         FormData data = new FormData();
-        data.tipoPersona = TipoPersona.JuridicaDireccion;
+        data.tipoPersona = TipoPersona.JURIDICA;
         data.razonSocial = "Pochoclera SRL";
         data.direccion = "al fondo a la derecha";
         data.cuil = "123";
 
+        assertFalse(data.direccion.isEmpty());
         boolean isValid = this.validator.validar(data);
         assertTrue(isValid);
     }
@@ -40,13 +43,13 @@ public class FormValidatorTest {
     @Test
     public void personaJuridicaSinRazonSocial() {
         FormData data = new FormData();
-        data.tipoPersona = TipoPersona.JuridicaSinRazon;
+        data.tipoPersona = TipoPersona.JURIDICA;
         data.telefono = "2262";
         data.direccion = "al fondo a la derecha";
         data.cuil = "123";
 
         boolean isValid = this.validator.validar(data);
-        assertTrue(isValid);
+        assertFalse(isValid);
     }
 
     @Test
@@ -64,23 +67,23 @@ public class FormValidatorTest {
     @Test
     public void personaFisicaSinNombre() {
         FormData data = new FormData();
-        data.tipoPersona = TipoPersona.FisicaSinNombre;
+        data.tipoPersona = TipoPersona.FISICA;
         data.apellido = "Vino";
         data.dni = "12345678";
 
         boolean isValid = this.validator.validar(data);
-        assertTrue(isValid);
+        assertFalse(isValid);
     }
 
     @Test
     public void personaFisicaDNIVacio() {
         FormData data = new FormData();
-        data.tipoPersona = TipoPersona.FisicaDNIVacio;
+        data.tipoPersona = TipoPersona.FISICA;
         data.nombre = "Michael";
         data.apellido = "Vino";
         data.dni = "";
 
         boolean isValid = this.validator.validar(data);
-        assertTrue(isValid);
+        assertFalse(isValid);
     }
 }

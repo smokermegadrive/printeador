@@ -1,7 +1,7 @@
 package org.wuewok.probando;
 
 enum TipoPersona {
-    FISICA, JURIDICA, FisicaSinNombre, FisicaDNIVacio, JuridicaSinRazon, JuridicaDireccion
+    FISICA, JURIDICA
 }
 
 public class FormData {
